@@ -1,0 +1,1 @@
+docker run --name harmony-db -p 5433:5433 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=harmony-db postgres
