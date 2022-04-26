@@ -4,8 +4,8 @@
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <include file="changes/001_create_table_users.sql" relativeToChangelogFile="true" />
-    <include file="changes/002_create_table_albums.sql" relativeToChangelogFile="true" />
+    <include file="changes/002_create_table_blogs.sql" relativeToChangelogFile="true" />
     <include file="changes/003_create_table_favourites.sql" relativeToChangelogFile="true" />
-    <include file="changes/004_create_table_music.sql" relativeToChangelogFile="true" />
+    <include file="changes/004_create_table_groups.sql" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
