@@ -12,10 +12,13 @@ import (
 
 func SetupRouter(router *gin.Engine, db *sqlx.DB) {
 	authRepository := repository.NewAuthRepository(db)
+	blogRepository := repository.NewBlogRepository(db)
 
 	authService := service.NewAuthService(authRepository)
+	blogService := service.NewBlogService(blogRepository)
 
 	authController := controller.NewAuthController(authService)
+	blogController := controller.NewBlogController(blogService)
 
 	harmonyRouterGroup := router.Group("")
 	harmonyRouterGroup.GET("/health-check", func(ctx *gin.Context) {
@@ -25,4 +28,5 @@ func SetupRouter(router *gin.Engine, db *sqlx.DB) {
 	})
 	harmonyRouterGroup.POST("/login", authController.Login)
 	harmonyRouterGroup.POST("/register", authController.Register)
+	harmonyRouterGroup.GET("/blog/all", blogController.GetAllBlogs)
 }

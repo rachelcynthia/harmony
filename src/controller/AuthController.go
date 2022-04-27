@@ -19,7 +19,6 @@ type authController struct {
 	authService service.AuthService
 }
 
-// Register implements AuthController
 func (c authController) Register(ctx *gin.Context) {
 	var req apiModel.Register
 
@@ -40,7 +39,6 @@ func (c authController) Register(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, userDetails)
 }
 
-// Login implements LoginController
 func (c authController) Login(ctx *gin.Context) {
 	var req apiModel.Login
 
