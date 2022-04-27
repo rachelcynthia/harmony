@@ -21,5 +21,5 @@ func main() {
 	harmonyRouter := gin.Default()
 	router.SetupRouter(harmonyRouter, db)
 
-	// harmonyRouter.Run()
+	harmonyRouter.Run()
 }

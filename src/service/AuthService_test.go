@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"fmt"
 	"harmony/src/mocks"
 	apiModel "harmony/src/models/api"
 	"net/http"
@@ -50,13 +49,35 @@ var _ = Describe("Auth Service test", func() {
 					}, nil).Times(1)
 
 				userDetails, err := authService.Login(tempContext, apiModel.Login{Email: "email", Password: "password"})
-				fmt.Print("hello")
 				Expect(err).Should(BeNil())
 				Expect(userDetails).Should(Equal(apiModel.User{
 					Name:     "name",
 					Username: "username",
 					Email:    "email",
 				}))
+			})
+		})
+	})
+	Context("Register Service", func() {
+		When("db query is successful", func() {
+			It("should return name", func() {
+				mockAuthRepository.EXPECT().Register(context.Background(), apiModel.Register{
+					Name:            "name",
+					Username:        "username",
+					Email:           "email",
+					Password:        "password",
+					ConfirmPassword: "password",
+				}).Return(nil).Times(1)
+
+				name, err := authService.Register(tempContext, apiModel.Register{
+					Name:            "name",
+					Username:        "username",
+					Email:           "email",
+					Password:        "password",
+					ConfirmPassword: "password",
+				})
+				Expect(err).Should(BeNil())
+				Expect(name).Should(Equal("name"))
 			})
 		})
 	})

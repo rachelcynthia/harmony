@@ -1,9 +1,9 @@
 package db
 
 type User struct {
-	ID       string `db:"ID"`
-	Name     string `db:"NAME"`
-	Username string `db:"USERNAME"`
-	Email    string `db:"EMAIL"`
-	Password string `db:"PASSWORD"`
+	ID       string `db:"id"`
+	Name     string `db:"name"`
+	Username string `db:"username"`
+	Email    string `db:"email"`
+	Password string `db:"password"`
 }

@@ -2,7 +2,6 @@ package controller
 
 import (
 	"bytes"
-	"fmt"
 	"harmony/src/mocks"
 	apiModel "harmony/src/models/api"
 	"net/http"
@@ -60,7 +59,38 @@ var _ = Describe("Auth Controller Test", func() {
 
 				expectedResponse := `{"name":"name","username":"username","email":"email"}`
 
-				fmt.Print(recorder.Body.String())
+				Expect(recorder.Code).Should(Equal(http.StatusOK))
+				Expect(recorder.Body.String()).Should(Equal(expectedResponse))
+			})
+		})
+	})
+	Context("Register Controller", func() {
+		When("service returns success", func() {
+			It("should return user details", func() {
+				req := `{
+					"name": "name",
+					"username": "username",
+					"email": "email",
+					"password": "password",
+					"confirm-password": "password"
+				}`
+				serviceReq := apiModel.Register{
+					Name:            "name",
+					Username:        "username",
+					Email:           "email",
+					Password:        "password",
+					ConfirmPassword: "password",
+				}
+
+				tempContext.Request = httptest.NewRequest("POST", "/login", bytes.NewBufferString(req))
+
+				authService.EXPECT().Register(tempContext, serviceReq).
+					Return("name", nil).Times(1)
+
+				authController.Register(tempContext)
+
+				expectedResponse := `"name"`
+
 				Expect(recorder.Code).Should(Equal(http.StatusOK))
 				Expect(recorder.Body.String()).Should(Equal(expectedResponse))
 			})

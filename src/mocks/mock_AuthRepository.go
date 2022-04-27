@@ -49,3 +49,17 @@ func (mr *MockAuthRepositoryMockRecorder) Login(ctx, email, password interface{}
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockAuthRepository)(nil).Login), ctx, email, password)
 }
+
+// Register mocks base method.
+func (m *MockAuthRepository) Register(ctx context.Context, req apiModel.Register) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Register", ctx, req)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Register indicates an expected call of Register.
+func (mr *MockAuthRepositoryMockRecorder) Register(ctx, req interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Register", reflect.TypeOf((*MockAuthRepository)(nil).Register), ctx, req)
+}
