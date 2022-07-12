@@ -46,7 +46,7 @@ func (r authRepository) Login(ctx context.Context, email string, password string
 	}
 
 	if len(user) == 0 {
-		return apiModel.User{}, errors.New("user does not exist")
+		return apiModel.User{}, errors.New("email/password entered is incorrect")
 	}
 
 	userDetails := apiModel.User{
